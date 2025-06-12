@@ -21,7 +21,7 @@ export const adminDashboard = async (req, res) => {
     order: [['date', 'DESC']],
   });
 
-  res.render('dashboard', { emps, atts, leaves, top, allAttendance , user: req.user });
+  res.render('admin', { emps, atts, leaves, top, allAttendance , user: req.user });
 };
 
 // Add new employee

@@ -6,4 +6,5 @@ module.exports = sequelize.define('leave', {
   endDate: DataTypes.DATEONLY,
   type: DataTypes.STRING,
   status: { type: DataTypes.STRING, defaultValue: 'pending' }
+  
 });
