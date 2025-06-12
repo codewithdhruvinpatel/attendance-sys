@@ -6,6 +6,7 @@ const path = require('path');
 const passport = require('passport');
 const { sequelize } = require('./models');
 
+
 const authRoutes = require('./routes/auth');
 const employeeRoutes = require('./routes/employee');
 const adminRoutes = require('./routes/admin');
@@ -19,11 +20,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+// function to generate a random secret key
+const generateSecret = () => {
+  return require('crypto').randomBytes(64).toString('hex');
+};
+const secret = generateSecret();
 app.use(
   session({
     store: new pgSession({ conString: process.env.DATABASE_URL }),
-    secret: process.env.SESSION_SECRET,
+    secret: secret,
     resave: false,
     saveUninitialized: false
   })
